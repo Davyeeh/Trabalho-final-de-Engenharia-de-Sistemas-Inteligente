@@ -7,9 +7,9 @@ from sklearn.compose import ColumnTransformer
 
 # --- Configuração das Colunas (Baseado no Notebook) ---
 # Colunas finais que o modelo usará (já renomeadas para inglês/padrão)
-COLUNAS_NUMERICAS = ['area', 'bedrooms', 'bathrooms', 'parking_spaces', 'latitude', 'longitude', 'price']
-COLUNAS_CATEGORICAS = ['neighborhood'] 
-TARGET = 'price'
+COLUNAS_NUMERICAS = ['created_date', 'Area', 'Bedrooms', 'Bathrooms', 'Parking_Spaces', 'extract_date', 'Latitude', 'Longitude']
+COLUNAS_CATEGORICAS = ['neighborhood', 'Rua', 'Bairro'] 
+TARGET = 'Price'
 
 def _separar_endereco(texto):
     """
@@ -51,7 +51,7 @@ def limpar_dados(df: pd.DataFrame) -> pd.DataFrame:
     # 2. Ajuste do Preço (Lógica IQR)
     if 'Price' in df.columns:
         # Garante numérico
-        df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
+        df['Price'] = pd.to_numeric(df['Price'], errors='coerce').astype(float)
         
         # Filtra preços válidos para cálculo
         precos_validos = df.loc[df['Price'] > 0, 'Price']
@@ -96,7 +96,7 @@ def limpar_dados(df: pd.DataFrame) -> pd.DataFrame:
         'Bedrooms': 'bedrooms',       # No notebook é Bedrooms, não Rooms
         'Bathrooms': 'bathrooms',     # No notebook é Bathrooms, não Toilets
         'Parking_Spaces': 'parking_spaces', # No notebook é Parking_Spaces
-        'Price': 'price',
+        'Price': 'Price',
         'Latitude': 'latitude',
         'Longitude': 'longitude',
         # street e neighborhood já criamos minúsculos

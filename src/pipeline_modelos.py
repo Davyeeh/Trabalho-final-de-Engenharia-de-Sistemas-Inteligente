@@ -32,7 +32,7 @@ def save_model(model, model_name, data_balance, cv_criteria):
         data_balance (str): Método de balanceamento de dados utilizado.
         cv_criteria (str): Critério de validação cruzada utilizado.
     """      
-    with open(f"model_{model_name}_{cv_criteria.upper()}_{data_balance}.pkl", "wb") as model_file:
+    with open(f"./dados/model_{model_name}_{cv_criteria.upper()}_{data_balance}.pkl", "wb") as model_file:
         pickle.dump(model, model_file)
 
 def load_model(file_model_path):
@@ -321,4 +321,4 @@ if __name__ == "__main__":
         dataset_path = str(sys.argv[1])
         start(dataset_path)
     else:
-        print("Você deve prover o caminho para o dataset.")    
+        print("Você deve prover o caminho para o dataset.")
