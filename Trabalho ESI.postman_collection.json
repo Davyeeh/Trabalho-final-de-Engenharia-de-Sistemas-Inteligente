@@ -1,0 +1,79 @@
+{
+  "info": {
+    "_postman_id": "1fd05434-e5fd-4482-86db-574f2aa94ca1",
+    "name": "Trabalho ESI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45844254"
+  },
+  "item": [
+    {
+      "name": "train",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "5dea0917-3d3a-413f-a16e-502bd952bcdb",
+              "src": "postman-cloud:///1f0f6341-6898-4950-aa1e-ca5267112e5c"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/train",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "train"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "predict",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"area\": 57,\r\n    \"bedrooms\": 1,\r\n    \"bathrooms\": 1,\r\n    \"parking_spaces\": 1,\r\n    \"neighborhood\": \"Pinheiros\",\r\n    \"latitude\": -23.56413595,\r\n    \"longitude\": -46.69517321540903,\r\n    \"created_date\": 2020\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/predict",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "predict"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
