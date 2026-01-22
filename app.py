@@ -9,6 +9,13 @@ from src.pipeline_dados import preparar_dados_para_treino, criar_pre_processador
 from src.pipeline_modelos import treinar_e_salvar
 
 app = FastAPI(title="API Preço Apartamentos SP", version="1.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite qualquer origem (ou coloque a URL do Lovable aqui)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite GET, POST, OPTIONS, etc.
+    allow_headers=["*"],  # Permite qualquer cabeçalho
+)
 
 # --- Configurações ---
 CAMINHO_HISTORICO = "dados/historico_apartamentos.csv"
