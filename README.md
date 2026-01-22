@@ -27,21 +27,7 @@ cd trabalho-final-de-engenharia-de-sistemas-inteligente
 2. Instale as dependências:
 
 ```bash
-poetry install
-```
-
-3. Ative o ambiente virtual:
-
-```bash
-poetry shell
-```
-
-4. Inicie a API:
-
-```bash
-python app.py
-# Ou, se preferir usar o uvicorn diretamente:
-# uvicorn app:app --reload
+poetry run uvicorn app:app
 ```
 
 A API estará rodando em:  
