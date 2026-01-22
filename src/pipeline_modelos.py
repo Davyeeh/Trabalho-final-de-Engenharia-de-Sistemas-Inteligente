@@ -66,9 +66,22 @@ def do_benchmark(x_features, y_label, grid_search=False, dataset_path=None, cv_c
               
     if grid_search:            
         grid_params_list = {
-            "LR": { "fit_intercept": [True, False] },
-            "RFR": { "n_estimators": [50, 100], "max_depth": [10, None] },
-            "XGB": { "n_estimators": [100, 200], "learning_rate": [0.1], "max_depth": [3, 6] }                             
+            "LR": { 
+                "fit_intercept": [True, False] 
+            },
+            "RFR": { 
+                "n_estimators": [50, 100],        # Mantido baixo para rapidez
+                "max_depth": [10, 20, None],      # Adicionado 20 para testar árvores mais profundas
+                "min_samples_split": [2, 5],      # 5 ajuda a podar a árvore mais cedo (mais rápido)
+                "max_features": ["sqrt", 1.0]     # 'sqrt' é MUITO mais rápido que usar todas as features
+            },
+            "XGB": { 
+                "n_estimators": [100, 150],       # 200 removido para economizar tempo
+                "learning_rate": [0.05, 0.1, 0.2],# Adicionado 0.05 e 0.2 para ajuste fino
+                "max_depth": [3, 5, 7],           # Profundidade 7 captura relações mais complexas
+                "subsample": [0.8, 1.0],          # 0.8 treina usando menos dados (mais rápido e evita overfitting)
+                "colsample_bytree": [0.8, 1.0]    # Usa menos colunas por árvore (mais rápido)
+            }    
         }
     else:
         grid_params_list = {"LR": {}, "RFR": {}, "XGB": {}}
